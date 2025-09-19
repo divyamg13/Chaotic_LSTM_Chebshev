@@ -31,15 +31,14 @@ def generate_lorenz_data(n, sigma=10, rho=28, beta=8/3, x0=0.0, y0=1.0, z0=0.0):
         A numpy array with columns for time (timestep), x, y, and z.
     """
     # Create an integer timestep array from 1 to n
-    t = np.arange(1, n + 1)
+    t = np.arange(0, n * 0.01, 0.01)
     
     # We use a separate floating-point time vector for the odeint solver.
-    t_ode = np.arange(0, n * 0.01, 0.01)
 
     initial_state = [x0, y0, z0]
     
     # Use odeint to numerically solve the differential equations.
-    solution = odeint(lorenz, initial_state, t_ode, args=(sigma, rho, beta))
+    solution = odeint(lorenz, initial_state, t, args=(sigma, rho, beta))
     
     # Add the integer timestep as the first column to the solution array.
     timestep_column = t.reshape(-1, 1)
@@ -84,16 +83,16 @@ if __name__ == '__main__':
     output_filename = sys.argv[1]
     
     # The folder where the data will be saved
-    output_folder = "LorenzData"
+    output_folder = "Datasets"
     
     # User-defined parameters and initial conditions
     num_samples = 20000
     sigma_val = 10
     rho_val = 28
     beta_val = 8/3
-    x0_val = 0.1
-    y0_val = 0.0
-    z0_val = 0.0
+    x0_val = -1.1
+    y0_val = 0.1
+    z0_val = 0.9
 
     # 1. Generate the Lorenz data, now with an integer timestep
     lorenz_data = generate_lorenz_data(

@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import nolds
 
+
+#Taken's Theorem allows us to reconstruct a phase space for a singular variable and calculate LLE
 def calculate_lle_distribution(
     file_path: str,
     target_variable: str,
